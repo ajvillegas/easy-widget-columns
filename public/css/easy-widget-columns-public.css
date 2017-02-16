@@ -1,0 +1,49 @@
+/*
+ * Column Classes
+ *
+ * Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
+ */
+
+.one-half,
+.one-third,
+.two-thirds,
+.one-fourth,
+.three-fourths,
+.one-sixth,
+.five-sixths {
+	float: left;
+	margin-left: 2.5641025641026%;
+}
+
+.one-half {
+	width: 48.717948717949%;
+}
+
+.one-third {
+	width: 31.623931623932%;
+}
+
+.two-thirds {
+	width: 65.811965811966%;
+}
+
+.one-fourth {
+	width: 23.076923076923%;
+}
+
+.three-fourths {
+	width: 74.358974358974%;
+}
+
+.one-sixth {
+	width: 14.529914529915%;
+}
+
+.five-sixths {
+	width: 82.905982905983%;
+}
+
+.first {
+	clear: both;
+	margin-left: 0;
+}
