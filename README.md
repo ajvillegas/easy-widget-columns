@@ -211,7 +211,7 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 # Changelog
 
 **1.1.5**
-* Added selective refresh support for widgets in the Customizer (props to [Weston Ruter](profiles.wordpress.org/westonruter)).
+* Added selective refresh support for widgets in the Customizer (props to [Weston Ruter](http://profiles.wordpress.org/westonruter)).
 * Renamed the 'Row Divider' widget to 'Widget Row' widget to make its function more clear.
 * You can now assign custom classes and a background image to each widget row using the 'Widget Row' widget.
 * Added the `ewc_advanced_options` filter to completely remove the advanced options from the 'Widget Row' widget.
