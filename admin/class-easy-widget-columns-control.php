@@ -92,7 +92,8 @@ class Easy_Widget_Columns_Control {
 					widget.find( 'select.ewc-select' ).ewcselect2( {
 						minimumResultsForSearch: Infinity,
 						templateResult: formatIcons,
-						templateSelection: formatIcons
+						templateSelection: formatIcons,
+						theme: 'ewc-select'
 					} );
 				}
 				
