@@ -1,10 +1,10 @@
 === Easy Widget Columns ===
 Contributors: ajvillegas
 Donate link:
-Tags: widget, admin, columns, layout
+Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.5
-Tested up to: 4.7.2
-Stable tag: 1.0.0
+Tested up to: 4.8
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,7 +182,7 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 == Changelog ==
 
 = 1.1.5 =
-* Added selective refresh support for widgets in the Customizer (props to Weston Ruter).
+* Added selective refresh support for widgets in the Customizer (props to [Weston Ruter](http://profiles.wordpress.org/westonruter)).
 * Renamed the 'Row Divider' widget to 'Widget Row' widget to make its function more clear.
 * You can now assign custom classes and a background image to each widget row using the 'Widget Row' widget.
 * Added the `ewc_advanced_options` filter to completely remove the advanced options from the 'Widget Row' widget.
