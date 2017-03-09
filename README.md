@@ -6,7 +6,7 @@ Easily create fluid column layouts with your widgets.
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
 **Requires at least**: 4.5  
 **Tested up to**: 4.8  
-**Stable tag**: 1.1.5  
+**Stable tag**: 1.1.6  
 **License**: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
 # Description
