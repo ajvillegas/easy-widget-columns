@@ -210,6 +210,9 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 
 # Changelog
 
+**1.1.6**
+* Fixed bug that prevented deleting plugin.
+
 **1.1.5**
 * Added selective refresh support for widgets in the Customizer (props to [Weston Ruter](http://profiles.wordpress.org/westonruter)).
 * Renamed the 'Row Divider' widget to 'Widget Row' widget to make its function more clear.
