@@ -16,7 +16,7 @@
  * Plugin Name:       Easy Widget Columns
  * Plugin URI:        http://www.alexisvillegas.com/plugins/easy-widget-columns
  * Description:       Easily display widgets in rows of columns.
- * Version:           1.1.5
+ * Version:           1.1.6
  * Author:            Alexis J. Villegas
  * Author URI:        http://www.alexisvillegas.com
  * License:           GPL-2.0+
