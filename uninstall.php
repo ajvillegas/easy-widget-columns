@@ -8,6 +8,11 @@
  *
  * @package    Easy_Widget_Columns
  */
+ 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -18,7 +23,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 if ( ! current_user_can( 'activate_plugins' ) ) {
 	return;
 }
-check_admin_referer( 'bulk-plugins' );
 
 // If action didn't originate on the proper page, then exit.
 if ( __FILE__ != WP_UNINSTALL_PLUGIN ) {
