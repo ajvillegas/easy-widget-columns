@@ -178,6 +178,10 @@
 	z-index: 1051;
 }
 
+.wp-customizer .select2-container--ewc-select .select2-dropdown {
+	z-index: 900000;
+}
+
 .select2-container--ewc-select .select2-results {
 	display: block;
 }
