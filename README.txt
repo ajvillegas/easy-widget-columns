@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -180,6 +180,10 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 7. Custom homepage with delineated widget rows for reference
 
 == Changelog ==
+
+= 1.1.7 =
+* Fixed undefined index notice when adding a 'Widget Row' widget.
+* Fixed 'Column width' control in the Customizer not displaying correctly.
 
 = 1.1.6 =
 * Fixed bug that prevented deleting plugin.
