@@ -167,7 +167,11 @@ class EWC_Row_Divider extends WP_Widget {
 			// Get widget above options
 	    	$widget_above_option = get_option( $wp_registered_widgets[$sidebar_id[$position_id-1]]['callback'][0]->option_name );
 	    	$widget_above_index = preg_replace( '/[^0-9]/', '', $sidebar_id[$position_id-1] );
-	    	$ewc_width_above = isset( $widget_above_option[$widget_above_index]['ewc_width'] );
+	    	if ( isset( $widget_above_option[$widget_above_index]['ewc_width'] ) ) {
+	    		$ewc_width_above = $widget_above_option[$widget_above_index]['ewc_width'];
+	    	} else {
+		    	$ewc_width_above = '';
+	    	}
 	    	
 	    	if ( !empty( $ewc_width_above ) && 'none' !== $ewc_width_above ) {
 			
@@ -183,7 +187,11 @@ class EWC_Row_Divider extends WP_Widget {
 			// Get widget below options
 	    	$widget_below_option = get_option( $wp_registered_widgets[$sidebar_id[$position_id+1]]['callback'][0]->option_name );
 	    	$widget_below_index = preg_replace( '/[^0-9]/', '', $sidebar_id[$position_id+1] );
-	    	$ewc_width_below = isset( $widget_below_option[$widget_below_index]['ewc_width'] );
+	    	if ( isset( $widget_below_option[$widget_below_index]['ewc_width'] ) ) {
+	    		$ewc_width_below = $widget_below_option[$widget_below_index]['ewc_width'];
+	    	} else {
+		    	$ewc_width_below = '';
+	    	}
 	    	
 	    	if ( !empty( $ewc_width_below ) && 'none' !== $ewc_width_below ) {
 			

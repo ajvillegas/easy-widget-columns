@@ -6,7 +6,7 @@ Easily create fluid column layouts with your widgets.
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
 **Requires at least**: 4.5  
 **Tested up to**: 4.8  
-**Stable tag**: 1.1.7  
+**Stable tag**: 1.1.8  
 **License**: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
 # Description
@@ -209,6 +209,9 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 ![Custom homepage with delineated widget rows for reference](wp-assets/screenshot-7.png?raw=true)
 
 # Changelog
+
+**1.1.8**
+* Fixed a bug introduced in the last version with the 'Widget Row' widget that caused the wrong markup to be outputted in the front end.
 
 **1.1.7**
 * Fixed undefined index notice when adding a 'Widget Row' widget.
