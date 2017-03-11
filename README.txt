@@ -8,7 +8,7 @@ Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easily create fluid column layouts with your widgets.
+Easily display widgets in rows of columns.
 
 == Description ==
 
