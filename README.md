@@ -1,6 +1,6 @@
 # Easy Widget Columns
 
-Easily create fluid column layouts with your widgets.
+Easily display widgets in rows of columns.
 
 **Contributors**: [ajvillegas](http://profiles.wordpress.org/ajvillegas)  
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
