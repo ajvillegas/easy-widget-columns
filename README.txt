@@ -16,6 +16,8 @@ Easy Widget Columns makes it really easy to arrange your widgets in rows of colu
 
 You can define new rows of widget columns with the 'Widget Row' widget, allowing you to create complex layouts directly from within your widget area or sidebar.
 
+> **Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://wordpress.org/plugins/widgetized-page-template/) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
+
 **Works With Most Themes**
 
 Easy Widget Columns is optimized for use with the Genesis Framework, but it is not required. It uses the [Genesis Framework Column Classes](https://gist.github.com/studiopress/5700003) to display your widgets in rows of columns. If your theme already incorporates the Genesis Framework Column Classes, or you want to manually add or edit the CSS, you can choose not to load the CSS under 'Settings' > 'Widget Columns' and rely on your theme’s stylesheet instead. This option is recommended for most Genesis users or those concerned with loading additional assets on their website.
