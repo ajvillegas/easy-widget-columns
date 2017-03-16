@@ -15,7 +15,7 @@ Easy Widget Columns makes it really easy to arrange your widgets in rows of colu
 
 You can define new rows of widget columns with the 'Widget Row' widget, allowing you to create complex layouts directly from within your widget area or sidebar.
 
-**Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://wordpress.org/plugins/widgetized-page-template/) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
+> **Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://wordpress.org/plugins/widgetized-page-template/) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
 
 **Works With Most Themes**
 
@@ -46,23 +46,23 @@ add_filter( 'ewc_include_widgets', 'myprefix_add_ewc_control' );
  */
 function myprefix_add_ewc_control( $ewc_widgets ) {
 	
-	$ewc_widgets = array(
-		'meta', // WP Meta widget
-		//'nav_menu', // WP Custom Menu widget
-		'archives', // WP Archives widget
-		'calendar', // WP Calendar widget
-		'categories', // WP Categories widget
-		//'links', // WP Links widget
-		//'pages', // WP Pages widget
-		//'recent-comments', // WP Recent Comments widget
-		//'recent-posts', // WP Recent Posts widget
-		//'rss', // WP RSS widget
-		//'search', // WP Search widget
-		//'tag_cloud', // WP Tag Cloud widget
-		//'text', // WP Text widget
-	);
+    $ewc_widgets = array(
+        'meta', // WP Meta widget
+        //'nav_menu', // WP Custom Menu widget
+        'archives', // WP Archives widget
+        'calendar', // WP Calendar widget
+        'categories', // WP Categories widget
+        //'links', // WP Links widget
+        //'pages', // WP Pages widget
+        //'recent-comments', // WP Recent Comments widget
+        //'recent-posts', // WP Recent Posts widget
+        //'rss', // WP RSS widget
+        //'search', // WP Search widget
+        //'tag_cloud', // WP Tag Cloud widget
+        //'text', // WP Text widget
+    );
 	
-	return $ewc_widgets;
+    return $ewc_widgets;
 	
 }
 ```
@@ -77,23 +77,23 @@ add_filter( 'ewc_exclude_widgets', 'myprefix_remove_ewc_control' );
  */
 function myprefix_remove_ewc_control( $ewc_widgets ) {
 	
-	$ewc_widgets = array(
-		//'meta', // WP Meta widget
-		//'nav_menu', // WP Custom Menu widget
-		'archives', // WP Archives widget
-		'calendar', // WP Calendar widget
-		'categories', // WP Categories widget
-		'links', // WP Links widget
-		//'pages', // WP Pages widget
-		'recent-comments', // WP Recent Comments widget
-		'recent-posts', // WP Recent Posts widget
-		'rss', // WP RSS widget
-		//'search', // WP Search widget
-		'tag_cloud', // WP Tag Cloud widget
-		//'text', // WP Text widget
-	);
+    $ewc_widgets = array(
+        //'meta', // WP Meta widget
+        //'nav_menu', // WP Custom Menu widget
+        'archives', // WP Archives widget
+        'calendar', // WP Calendar widget
+        'categories', // WP Categories widget
+        'links', // WP Links widget
+        //'pages', // WP Pages widget
+        'recent-comments', // WP Recent Comments widget
+        'recent-posts', // WP Recent Posts widget
+        'rss', // WP RSS widget
+        //'search', // WP Search widget
+        'tag_cloud', // WP Tag Cloud widget
+        //'text', // WP Text widget
+    );
 	
-	return $ewc_widgets;
+    return $ewc_widgets;
 	
 }
 ```
@@ -112,16 +112,16 @@ add_filter( 'ewc_color_palette', 'myprefix_ewc_color_palette' );
  */
 function myprefix_ewc_color_palette( $color_palette ) {
 	
-	$color_palette = array(
-		'#252724',
-		'#ce6b36',
-		'#31284b',
-		'#a03327',
-		'#3b3e3e',
-		'#67b183',
-	);
+    $color_palette = array(
+        '#252724',
+        '#ce6b36',
+        '#31284b',
+        '#a03327',
+        '#3b3e3e',
+        '#67b183',
+    );
 	
-	return $color_palette;
+    return $color_palette;
 	
 }
 ```
@@ -164,9 +164,9 @@ Yes, in addition to the column classes assigned to each widget, the plugin adds 
 
 ```
 <div id="widget-row-{number}" class="widget-row">
-	<div class="wrap">
-		[my widgets...]
-	</div>
+    <div class="wrap">
+        [my widgets...]
+    </div>
 </div>
 ```
 
