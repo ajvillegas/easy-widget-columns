@@ -15,7 +15,7 @@ Easy Widget Columns makes it really easy to arrange your widgets in rows of colu
 
 You can define new rows of widget columns with the 'Widget Row' widget, allowing you to create complex layouts directly from within your widget area or sidebar.
 
-> **Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://wordpress.org/plugins/widgetized-page-template/) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
+> **Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://github.com/ajvillegas/widgetized-page-template) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
 
 **Works With Most Themes**
 
