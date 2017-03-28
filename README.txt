@@ -46,23 +46,23 @@ The examples below demonstrate how you can implement these filters on your theme
  */
 function myprefix_add_ewc_control( $ewc_widgets ) {
 	
-	$ewc_widgets = array(
-		'meta', // WP Meta widget
-		//'nav_menu', // WP Custom Menu widget
-		'archives', // WP Archives widget
-		'calendar', // WP Calendar widget
-		'categories', // WP Categories widget
-		//'links', // WP Links widget
-		//'pages', // WP Pages widget
-		//'recent-comments', // WP Recent Comments widget
-		//'recent-posts', // WP Recent Posts widget
-		//'rss', // WP RSS widget
-		//'search', // WP Search widget
-		//'tag_cloud', // WP Tag Cloud widget
-		//'text', // WP Text widget
-	);
+    $ewc_widgets = array(
+        'meta', // WP Meta widget
+        //'nav_menu', // WP Custom Menu widget
+        'archives', // WP Archives widget
+        'calendar', // WP Calendar widget
+        'categories', // WP Categories widget
+        //'links', // WP Links widget
+        //'pages', // WP Pages widget
+        //'recent-comments', // WP Recent Comments widget
+        //'recent-posts', // WP Recent Posts widget
+        //'rss', // WP RSS widget
+        //'search', // WP Search widget
+        //'tag_cloud', // WP Tag Cloud widget
+        //'text', // WP Text widget
+    );
 	
-	return $ewc_widgets;
+    return $ewc_widgets;
 	
 }`
 
@@ -75,23 +75,23 @@ function myprefix_add_ewc_control( $ewc_widgets ) {
  */
 function myprefix_remove_ewc_control( $ewc_widgets ) {
 	
-	$ewc_widgets = array(
-		//'meta', // WP Meta widget
-		//'nav_menu', // WP Custom Menu widget
-		'archives', // WP Archives widget
-		'calendar', // WP Calendar widget
-		'categories', // WP Categories widget
-		'links', // WP Links widget
-		//'pages', // WP Pages widget
-		'recent-comments', // WP Recent Comments widget
-		'recent-posts', // WP Recent Posts widget
-		'rss', // WP RSS widget
-		//'search', // WP Search widget
-		'tag_cloud', // WP Tag Cloud widget
-		//'text', // WP Text widget
-	);
+    $ewc_widgets = array(
+        //'meta', // WP Meta widget
+        //'nav_menu', // WP Custom Menu widget
+        'archives', // WP Archives widget
+        'calendar', // WP Calendar widget
+        'categories', // WP Categories widget
+        'links', // WP Links widget
+        //'pages', // WP Pages widget
+        'recent-comments', // WP Recent Comments widget
+        'recent-posts', // WP Recent Posts widget
+        'rss', // WP RSS widget
+        //'search', // WP Search widget
+        'tag_cloud', // WP Tag Cloud widget
+        //'text', // WP Text widget
+    );
 	
-	return $ewc_widgets;
+    return $ewc_widgets;
 	
 }`
 
@@ -108,16 +108,16 @@ The example below demonstrates how you can implement this filter on your theme:
  */
 function myprefix_ewc_color_palette( $color_palette ) {
 	
-	$color_palette = array(
-		'#252724',
-		'#ce6b36',
-		'#31284b',
-		'#a03327',
-		'#3b3e3e',
-		'#67b183',
-	);
+    $color_palette = array(
+        '#252724',
+        '#ce6b36',
+        '#31284b',
+        '#a03327',
+        '#3b3e3e',
+        '#67b183',
+    );
 	
-	return $color_palette;
+    return $color_palette;
 	
 }`
 
@@ -156,9 +156,9 @@ For more information, please refer to this page in the Codex: [Function Referenc
 Yes, in addition to the column classes assigned to each widget, the plugin adds the following HTML markup around each row which is useful for clearing floats and styling purposes:
 
 `<div id="widget-row-{number}" class="widget-row">
-	<div class="wrap">
-		[my widgets...]
-	</div>
+    <div class="wrap">
+        [my widgets...]
+    </div>
 </div>`
 
 = What is the difference between 'None' and '1/1' options? =
