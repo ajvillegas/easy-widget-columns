@@ -600,3 +600,12 @@ input[type=checkbox]:checked ~ .ewc-row-styles {
 .image-properties-dropdown select {
 	width: 100%;
 }
+
+/**
+ * Media Modal
+ */
+ 
+.media-frame.ewc-media-frame select.attachment-filters {
+	width: 100%;
+	max-width: 100%;
+}
