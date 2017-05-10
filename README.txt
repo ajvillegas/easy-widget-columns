@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,10 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 7. Custom homepage with delineated widget rows for reference
 
 == Changelog ==
+
+= 1.1.9 =
+* Strings in the image upload modal are now translatable.
+* Updated .pot file with the new translatable strings.
 
 = 1.1.8 =
 * Fixed a bug introduced in the last version with the 'Widget Row' widget that caused the wrong markup to be outputted in the front end.
