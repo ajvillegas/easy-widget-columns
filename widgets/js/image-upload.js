@@ -27,7 +27,7 @@
 	            return;
 	        }
 	
-	        //Create custom media frame. Refer to the wp-includes/js/media-views.js file for more default options.
+	        // Create custom media frame. Refer to the wp-includes/js/media-views.js file for more default options.
 	        media_frame = wp.media.frames.media_frame = wp.media( {
 		        
 	            // Custom class name for our media frame.
@@ -36,20 +36,20 @@
 	            frame: 'select',
 	            // Allow mutiple file uploads.
 	            multiple: false,
-	            // Set custom media workflow title using the localized script object 'widget_script_handle'.
-	            title: 'Choose or Upload Image',
+	            // Set custom media workflow title using the localized script object 'ajv_image_upload'.
+	            title: ajv_image_upload.frame_title
 	            // Limit media library access to images only.
 	            library: {
 	                type: 'image'
 	            },
-	            // Set custom button text using the localized script object 'widget_script_handle'.
+	            // Set custom button text using the localized script object 'ajv_image_upload'.
 	            button: {
-	                text:'Insert Image'
+	                text: ajv_image_upload.frame_button
 	            }
 	            
 	        } );
 	
-	        media_frame.on('select', function() {
+	        media_frame.on( 'select', function() {
 		        
 	            // Grab our attachment selection and construct a JSON representation of the model.
 	            var media_attachment = media_frame.state().get( 'selection' ).first().toJSON();

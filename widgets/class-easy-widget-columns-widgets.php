@@ -96,7 +96,14 @@ class Easy_Widget_Columns_Widgets {
 		
 		// Image uploader
 		wp_enqueue_media();
-		wp_enqueue_script( 'ajv-image-upload', plugin_dir_url( __FILE__ ) . 'js/image-upload.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'ajv-image-upload', plugin_dir_url( __FILE__ ) . 'js/image-upload.min.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script( 'ajv-image-upload', 'ajv_image_upload',
+            array(
+                'frame_title' => __( 'Choose or Upload Image', 'easy-widget-columns' ),
+                'frame_button' => __( 'Insert Image', 'easy-widget-columns' ),
+            )
+        );
+		wp_enqueue_script( 'ajv-image-upload' );
 		
 	}
 	
