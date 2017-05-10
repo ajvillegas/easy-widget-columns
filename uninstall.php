@@ -33,7 +33,7 @@ if ( __FILE__ != WP_UNINSTALL_PLUGIN ) {
 if ( is_multisite() ) {
 	
 	global $wpdb;
-	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
+	$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A );
 	
 	delete_option( 'easy-widget-columns' );
 		
