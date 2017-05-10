@@ -26,7 +26,6 @@
  */
 class Easy_Widget_Columns_i18n {
 
-
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -41,7 +40,5 @@ class Easy_Widget_Columns_i18n {
 		);
 
 	}
-
-
 
 }
