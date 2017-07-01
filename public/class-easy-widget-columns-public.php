@@ -86,9 +86,9 @@ class Easy_Widget_Columns_Public {
 		
 		// Check if current locale is RTL (Right To Left)
 	    if ( is_rtl() ) {
-		    $embedded_css = '.widget-row:after,.widget-row .wrap:after{clear:both;content:" ";display:table;}.widget-row .full-width{float:right;width:100%;}';
+		    $embedded_css = '.widget-row:after,.widget-row .wrap:after{clear:both;content:"";display:table;}.widget-row .full-width{float:right;width:100%;}';
 		} else {
-			$embedded_css = '.widget-row:after,.widget-row .wrap:after{clear:both;content:" ";display:table;}.widget-row .full-width{float:left;width:100%;}';
+			$embedded_css = '.widget-row:after,.widget-row .wrap:after{clear:both;content:"";display:table;}.widget-row .full-width{float:left;width:100%;}';
 		}
 	    
 	    echo '<style type="text/css">' . $embedded_css . '</style>';
