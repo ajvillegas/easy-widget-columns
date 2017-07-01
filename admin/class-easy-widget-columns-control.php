@@ -140,10 +140,10 @@ class Easy_Widget_Columns_Control {
 		$ewc_exclude_widgets = apply_filters( 'ewc_exclude_widgets', array() ); // Blacklist filter
 		
 		if ( !empty( $ewc_include_widgets ) &&
-			( in_array( $widget->id_base, array( 'ewc-row-divider' ) ) || !in_array( $widget->id_base, $ewc_include_widgets ) ) ) {
+			( in_array( $widget->id_base, array( 'ewc-row-divider', 'ewc-subrow-divider' ) ) || !in_array( $widget->id_base, $ewc_include_widgets ) ) ) {
 			return;
 		} else if ( empty( $ewc_include_widgets ) &&
-			( in_array( $widget->id_base, array( 'ewc-row-divider' ) ) || in_array( $widget->id_base, $ewc_exclude_widgets ) ) ) {
+			( in_array( $widget->id_base, array( 'ewc-row-divider', 'ewc-subrow-divider' ) ) || in_array( $widget->id_base, $ewc_exclude_widgets ) ) ) {
 			return;
 		}
 		
@@ -220,17 +220,37 @@ class Easy_Widget_Columns_Control {
 		
 		// Get the widget's position in the sidebar
 		$sidebars_widgets = get_option( 'sidebars_widgets', array() );
-		$position_id = array_search( $params[0]['widget_id'], $sidebars_widgets[$params[0]['id']] );
+		$sidebar_id = $sidebars_widgets[$params[0]['id']];
+		$position_id = array_search( $params[0]['widget_id'], $sidebar_id );
+		
+		// Retrieve the widget above options
+		if ( isset( $sidebar_id[$position_id-2] ) ) {
+			$widget_above_option = get_option( $wp_registered_widgets[$sidebar_id[$position_id-2]]['callback'][0]->option_name );
+			$widget_above_index = preg_replace( '/[^0-9]/', '', $sidebar_id[$position_id-2] );
+		} else {
+			$widget_above_option = '';
+			$widget_above_index = '';
+		}
+		if ( isset( $widget_above_option[$widget_above_index]['ewc_width'] ) ) {
+			$ewc_width_above = $widget_above_option[$widget_above_index]['ewc_width'];
+		} else {
+			$ewc_width_above = '';
+		}
 		
 		// Determine first widget in a row and assign .first class
-		if ( ( isset( $sidebars_widgets[$params[0]['id']][$position_id-1] ) && in_array( _get_widget_id_base( $sidebars_widgets[$params[0]['id']][$position_id-1] ), array('ewc-row-divider') ) ) ) {
+		if ( ( isset( $sidebar_id[$position_id-1] )
+				&& in_array( _get_widget_id_base( $sidebar_id[$position_id-1] ), array('ewc-row-divider') ) )
+			|| ( ( isset( $sidebar_id[$position_id-1] )
+				&& isset( $sidebar_id[$position_id-2] )
+				&& in_array( _get_widget_id_base( $sidebar_id[$position_id-1] ), array('ewc-subrow-divider') )
+				&& 'none' !== $ewc_width_above ) ) ) {
 			$first = 'first ';
 		} else {
 			$first = '';
 		}
 		
 		// Determine last widget in sidebar and assign closing row markup
-		if ( ( end( $sidebars_widgets[$params[0]['id']] ) == $params[0]['widget_id'] ) ) {
+		if ( ( end( $sidebar_id ) == $params[0]['widget_id'] ) ) {
 			$wrap_close = '</div></div>';
 		} else {
 			$wrap_close = '';

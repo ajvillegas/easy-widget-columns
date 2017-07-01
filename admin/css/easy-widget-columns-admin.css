@@ -544,22 +544,67 @@ input[type=checkbox] ~ .ewc-row-styles {
 input[type=checkbox]:checked ~ .ewc-row-styles {
    display: block;
 }
+
+input[type=checkbox].ewc-label-checkbox {
+	display: none;
+}
+
+input[type=checkbox].ewc-background-checkbox ~ .ewc-background-settings,
+input[type=checkbox].ewc-margin-checkbox ~ .ewc-margin-settings,
+input[type=checkbox].ewc-padding-checkbox ~ .ewc-padding-settings,
+input[type=checkbox].ewc-class-checkbox ~ .ewc-class-settings {
+	max-height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	transition: max-height 0.25s ease-out, visibility 0.25s linear;
+}
+
+input[type=checkbox].ewc-background-checkbox:checked ~ .ewc-background-settings,
+input[type=checkbox].ewc-margin-checkbox:checked ~ .ewc-margin-settings,
+input[type=checkbox].ewc-padding-checkbox:checked ~ .ewc-padding-settings,
+input[type=checkbox].ewc-class-checkbox:checked ~ .ewc-class-settings {
+	max-height: 50em;
+	visibility: visible;
+	transition: max-height 0.5s ease-in, visibility 0.5s linear;
+}
  
 .ewc-row-styles {
+	position: relative;
 	border: 1px solid #eee;
-	padding: 0 10px;
+	padding: 7px 10px 5px;
 	background: #fcfcfc;
 	margin-bottom: 15px;
 }
 
-.ewc-section-label {
-	display: inline-block;
-	margin-bottom: 5px;
-	font-weight: 700;
+.ewc-row-styles hr {
+	margin: 8px 0 6px;
 }
 
-.ewc-widget-table {
-	margin-bottom: 10px;
+.ewc-row-styles hr:last-of-type {
+	visibility: hidden;
+	margin: 0;
+}
+
+.ewc-section-label {
+	display: inline-block;
+	margin: 7px 0;
+	font-weight: 700;
+	width: 100%;
+}
+
+.ewc-section-label:after {
+	content: "\f140";
+	position: absolute;
+	right: 0.5em;
+    font: 400 18px/16px dashicons;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none !important;
+}
+
+input[type=checkbox].ewc-label-checkbox:checked + .ewc-section-label:after {
+	content: "\f142";
 }
 
 .ewc-widget-table .row-content {
@@ -578,6 +623,18 @@ input[type=checkbox]:checked ~ .ewc-row-styles {
 
 .wp-customizer .ewc-widget-table .row-label {
 	width: 30px;
+}
+
+.button.custom-media-button {
+	margin: 5px 0 8px;
+}
+
+input.custom-media-url:invalid ~ .ewc-image-properties {
+	display: none;
+}
+
+.ewc-image-properties {
+	margin-top: 8px;
 }
 
 .ewc-image-properties:after {
@@ -599,6 +656,31 @@ input[type=checkbox]:checked ~ .ewc-row-styles {
 
 .image-properties-dropdown select {
 	width: 100%;
+	margin: 0;
+}
+
+.ewc-class-settings input {
+	margin-bottom: 3px;
+}
+
+.ewc-preset-classes {
+	background: #fff;
+	padding: 5px 5px 0;
+    max-height: 75px;
+    overflow: hidden;
+    overflow-y: auto;
+    margin: 7px 0 3px 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07) inset;
+    color: #32373c;
+}
+
+.ewc-class-settings .ewc-preset-classes input {
+	margin-bottom: 0;
+}
+
+.ewc-preset-label {
+	vertical-align: top;
 }
 
 /**
