@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Easy Widget Columns\n"
-"POT-Creation-Date: 2017-05-09 16:43-0700\n"
-"PO-Revision-Date: 2017-05-09 16:41-0700\n"
+"POT-Creation-Date: 2017-07-01 16:17-0700\n"
+"PO-Revision-Date: 2017-07-01 16:17-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: easy-widget-columns.php\n"
@@ -92,7 +92,7 @@ msgid "Column width:"
 msgstr ""
 
 #: admin/partials/easy-widget-columns-widget-form.php:17
-#: widgets/class-widget-row-divider.php:342
+#: widgets/class-widget-row-divider.php:415
 msgid "None"
 msgstr ""
 
@@ -128,161 +128,174 @@ msgstr ""
 msgid "5/6"
 msgstr ""
 
-#: widgets/class-easy-widget-columns-widgets.php:102
+#: widgets/class-easy-widget-columns-widgets.php:107
 msgid "Choose or Upload Image"
 msgstr ""
 
-#: widgets/class-easy-widget-columns-widgets.php:103
+#: widgets/class-easy-widget-columns-widgets.php:108
 msgid "Insert Image"
 msgstr ""
 
 #: widgets/class-widget-row-divider.php:27
-#: widgets/class-widget-row-divider.php:267
+#: widgets/class-widget-row-divider.php:336
 msgid "Use this widget to start or close a new row of widget columns."
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:35
+#: widgets/class-widget-row-divider.php:57
 msgid "Widget Row"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:272
+#: widgets/class-widget-row-divider.php:341
 msgid "Advanced options"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:277
+#: widgets/class-widget-row-divider.php:348
 msgid "Row background"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:278
+#: widgets/class-widget-row-divider.php:353
 msgid "Color:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:283
+#: widgets/class-widget-row-divider.php:357
 msgid "Image:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:284
+#: widgets/class-widget-row-divider.php:358
 msgid "Enter URL or select image"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:291
+#: widgets/class-widget-row-divider.php:359
+msgid "Select Image"
+msgstr ""
+
+#: widgets/class-widget-row-divider.php:364
 msgid "Repeat:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:294
+#: widgets/class-widget-row-divider.php:367
 msgid "Tile"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:295
+#: widgets/class-widget-row-divider.php:368
 msgid "Horizontal"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:296
+#: widgets/class-widget-row-divider.php:369
 msgid "Vertical"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:297
+#: widgets/class-widget-row-divider.php:370
 msgid "No Repeat"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:306
+#: widgets/class-widget-row-divider.php:379
 msgid "Attachment:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:309
+#: widgets/class-widget-row-divider.php:382
 msgid "Scroll"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:310
+#: widgets/class-widget-row-divider.php:383
 msgid "Fixed"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:319
+#: widgets/class-widget-row-divider.php:392
 msgid "Position:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:322
+#: widgets/class-widget-row-divider.php:395
 msgid "Left Top"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:323
+#: widgets/class-widget-row-divider.php:396
 msgid "Left Center"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:324
+#: widgets/class-widget-row-divider.php:397
 msgid "Left Bottom"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:325
+#: widgets/class-widget-row-divider.php:398
 msgid "Right Top"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:326
+#: widgets/class-widget-row-divider.php:399
 msgid "Right Center"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:327
+#: widgets/class-widget-row-divider.php:400
 msgid "Right Bottom"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:328
+#: widgets/class-widget-row-divider.php:401
 msgid "Center Top"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:329
+#: widgets/class-widget-row-divider.php:402
 msgid "Center"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:330
+#: widgets/class-widget-row-divider.php:403
 msgid "Center Bottom"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:339
+#: widgets/class-widget-row-divider.php:412
 msgid "Scale:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:343
+#: widgets/class-widget-row-divider.php:416
 msgid "Cover"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:344
+#: widgets/class-widget-row-divider.php:417
 msgid "Contain"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:356
+#: widgets/class-widget-row-divider.php:436
 msgid "Row margin"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:361
-#: widgets/class-widget-row-divider.php:390
+#: widgets/class-widget-row-divider.php:442
+#: widgets/class-widget-row-divider.php:480
 msgid "top:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:366
-#: widgets/class-widget-row-divider.php:395
+#: widgets/class-widget-row-divider.php:447
+#: widgets/class-widget-row-divider.php:485
 msgid "right:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:373
-#: widgets/class-widget-row-divider.php:402
+#: widgets/class-widget-row-divider.php:454
+#: widgets/class-widget-row-divider.php:492
 msgid "btm:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:378
-#: widgets/class-widget-row-divider.php:407
+#: widgets/class-widget-row-divider.php:459
+#: widgets/class-widget-row-divider.php:497
 msgid "left:"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:385
+#: widgets/class-widget-row-divider.php:474
 msgid "Row padding"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:417
-msgid "Custom classes"
+#: widgets/class-widget-row-divider.php:512
+msgid "CSS classes"
 msgstr ""
 
-#: widgets/class-widget-row-divider.php:419
-msgid "Separate classes by a space."
+#: widgets/class-widget-row-divider.php:515
+msgid "Enter custom classes"
+msgstr ""
+
+#: widgets/class-widget-subrow-divider.php:28
+#: widgets/class-widget-subrow-divider.php:72
+msgid "Use this widget to start a new sub-row of widget columns."
+msgstr ""
+
+#: widgets/class-widget-subrow-divider.php:36
+msgid "sub-row"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
