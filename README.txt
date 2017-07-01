@@ -1,10 +1,10 @@
 === Easy Widget Columns ===
 Contributors: ajvillegas
-Donate link:
+Donate link:   
 Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Easily display widgets in rows of columns.
 
 Easy Widget Columns makes it really easy to arrange your widgets in rows of columns. It works by adding a new 'Column width' select option at the bottom of your widget’s form that allows you to set a width value for each widget.
 
-You can define new rows of widget columns with the 'Widget Row' widget, allowing you to create complex layouts directly from within your widget area or sidebar.
+You can define new rows and sub-rows of widget columns with the 'Widget Row' widget and the 'Sub-Row' widget respectively, allowing you to create complex layouts directly from within your widget area or sidebar.
 
 > **Genesis Framework users**, be sure to check out the [Widgetized Page Template](https://wordpress.org/plugins/widgetized-page-template/) plugin, which helps you create full-page widget areas to use as a "blank canvas" with Easy Widget Columns.
 
@@ -28,14 +28,20 @@ The plugin supports RTL layouts and is translation ready.
 
 **Filters for Developers**
 
-The following filters are available for you to add or remove the 'Column width' control from specific widgets giving you full control over your widgets.
+The following filters are available for you to take full control of the plugin on your themes.
 
-* `ewc_include_widgets` is a whitelist filter used to add the control ONLY to the specified widgets.
-* `ewc_exclude_widgets` is a blacklist filter used to remove the control from the specified widgets.
+* `ewc_include_widgets` - This whitelist filter is used to add the width control ONLY to the specified widgets.
+* `ewc_exclude_widgets` - This blacklist filter is used to remove the width control from the specified widgets.
+* `ewc_color_palette` - This filter allows you to add a custom color palette to the color picker control in the 'Widget Row' widget.
+* `ewc_preset_classes` - This filter allows you assign preset CSS classes that display as a checkbox list in the 'Widget Row' widget.
+* `ewc_advanced_options` - This filter allows you remove specific or all advanced options from the 'Widget Row' widget.
 
-Both filters accept the widget’s ID base as parameters. Please note that you cannot use both filters at once. The `ewc_include_widgets` filter will always take precedence over the `ewc_exclude_widgets` filter and overwrite it.
+**ewc_include_widgets**   
+**ewc_exclude_widgets**
 
-The examples below demonstrate how you can implement these filters on your theme using the default WordPress widgets:
+Both filters accept the widget's ID base as parameters. Please note that you cannot use both filters at once. The `ewc_include_widgets` filter will always take precedence over the `ewc_exclude_widgets` filter and overwrite it.
+
+The examples below demonstrate how you can implement these filters on your theme.
 
 `add_filter( 'ewc_include_widgets', 'myprefix_add_ewc_control' );
 /**
@@ -48,18 +54,9 @@ function myprefix_add_ewc_control( $ewc_widgets ) {
 	
     $ewc_widgets = array(
         'meta', // WP Meta widget
-        //'nav_menu', // WP Custom Menu widget
         'archives', // WP Archives widget
         'calendar', // WP Calendar widget
         'categories', // WP Categories widget
-        //'links', // WP Links widget
-        //'pages', // WP Pages widget
-        //'recent-comments', // WP Recent Comments widget
-        //'recent-posts', // WP Recent Posts widget
-        //'rss', // WP RSS widget
-        //'search', // WP Search widget
-        //'tag_cloud', // WP Tag Cloud widget
-        //'text', // WP Text widget
     );
 	
     return $ewc_widgets;
@@ -76,28 +73,21 @@ function myprefix_add_ewc_control( $ewc_widgets ) {
 function myprefix_remove_ewc_control( $ewc_widgets ) {
 	
     $ewc_widgets = array(
-        //'meta', // WP Meta widget
-        //'nav_menu', // WP Custom Menu widget
-        'archives', // WP Archives widget
-        'calendar', // WP Calendar widget
-        'categories', // WP Categories widget
-        'links', // WP Links widget
-        //'pages', // WP Pages widget
         'recent-comments', // WP Recent Comments widget
         'recent-posts', // WP Recent Posts widget
         'rss', // WP RSS widget
-        //'search', // WP Search widget
         'tag_cloud', // WP Tag Cloud widget
-        //'text', // WP Text widget
     );
 	
     return $ewc_widgets;
 	
 }`
 
-The `ewc_color_palette` filter allows you to add a custom color palette to the color picker control in the 'Widget Row' widget. The filter accepts an array of hex color values as parameters.
+**ewc_color_palette**
 
-The example below demonstrates how you can implement this filter on your theme:
+This filter allows you to add a custom color palette to the color picker control in the 'Widget Row' widget. It accepts an array of hex color values as parameters.
+
+The example below demonstrates how you can implement this filter on your theme.
 
 `add_filter( 'ewc_color_palette', 'myprefix_ewc_color_palette' );
 /**
@@ -121,12 +111,74 @@ function myprefix_ewc_color_palette( $color_palette ) {
 	
 }`
 
-The `ewc_advanced_options` filter allows you to completely remove the advanced options from the 'Widget Row' widget. This can be useful for limiting design functionality on a client website ([decisions, not options](https://wordpress.org/about/philosophy/#decisions)).
+**ewc_preset_classes**
 
-The example below demonstrates how you can implement this filter on your theme:
+This filter allows you assign preset CSS classes that display as a checkbox list in the 'Widget Row' widget.
 
-`// Remove advanced options from the Widget Row widget
+The following example demonstrates how you can implement this filter on your theme.
+
+`add_filter( 'ewc_preset_classes', 'myprefix_preset_classes' );
+/**
+ * Filter for predefining EWC Widget Row classes.
+ *
+ * @param	array	An empty array.
+ * @return	array	An array containing new values.
+ */
+function myprefix_preset_classes( $classes ) {
+	
+    $classes = array(
+        'hero',
+        'parallax',
+        'slider',
+        'content',
+    );
+	
+    return $classes;
+	
+}`
+
+**ewc_advanced_options**
+
+This filter allows you remove specific or all advanced options from the 'Widget Row' widget. This can be useful for limiting design functionality on a client website ([decisions, not options](https://wordpress.org/about/philosophy/#decisions)).
+
+The following example demonstrates how to completely remove all advanced options.
+
+`// Remove all advanced options from the Widget Row widget
 add_filter( 'ewc_advanced_options', '__return_false' );`
+
+The example below demonstrates how to disable or enable specific advanced options. The `display` parameter toggles the advanced option and the `active` parameter determines if the panel will display open (1) or closed (0) when the Widget Row widget is first added into a widget area. 
+
+`add_filter( 'ewc_advanced_options', 'myprefix_display_advanced_options' );
+/**
+ * Filter to remove specific advanced options from the Widget Row widget.
+ *
+ * @param	array	An array containing default values.
+ * @return	array	An array containing new values.
+ */
+function myprefix_display_advanced_options( $display ) {
+	
+    $display = array(
+        'ewc_background' => array(
+            'display' => true,
+            'active' => 1,
+        ),
+        'ewc_margin' => array(
+            'display' => false,
+            'active' => 0,
+        ),
+        'ewc_padding' => array(
+            'display' => false,
+            'active' => 0,
+        ),
+        'ewc_class' => array(
+            'display' => true,
+            'active' => 0,
+        ),
+    );
+	
+    return $display;
+	
+}`
 
 == Installation ==
 
@@ -169,6 +221,8 @@ The default value of 'None' has no effect on your widget's markup while the '1/1
 
 To define new rows, use the 'Widget Row' widget at the start of each new row. If the next widget after a row has a value of 'None', then you'll need to add a 'Widget Row' widget before it to close the row. The only time you don't have to use the 'Widget Row' widget is when the last widget in a row is also the last widget in your widget area or sidebar.
 
+To define new sub-rows within a widget row use the 'Sub-Row' widget at the start of each new sub-row. The Sub-Row widget only works within a widget row and has no effect when used outside of a widget row.
+
 **Note:** Please make sure that each widget inside each row has a 'Column width' value other than 'None' assigned to it, otherwise the HTML markup will break in the front-end.
 
 == Screenshots ==
@@ -182,6 +236,13 @@ To define new rows, use the 'Widget Row' widget at the start of each new row. If
 7. Custom homepage with delineated widget rows for reference
 
 == Changelog ==
+
+= 1.2.0 =
+* Enhanced UI for the Widget Row advanced options.
+* Updated the `ewc_advanced_options` filter for removing specific advanced options.
+* Added the `ewc_preset_classes` filter for adding your own predefined CSS classes to the 'Widget Row' widget.
+* Added the 'Sub-Row' widget for creating sub-rows within a widget row allowing you to create more complex layouts.
+* Fixed the image upload control to use unique IDs to avoid conflict with other Widget Row instances.
 
 = 1.1.9 =
 * Strings in the image upload modal are now translatable.
