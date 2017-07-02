@@ -15,18 +15,18 @@
 	    // Prepare the variable that holds our custom media manager.
 	    var media_frame;
 	    
+	    // Prepare the variable that holds our custom input field ID.
+	    var target_input;
+	    
 	    // Bind to our click event in order to open up the new media experience.
 	    $( document.body ).on( 'click.ewcOpenMediaManager', '.custom-media-button', function( e ) {
 		    
 	        // Prevent the default action from occuring.
 	        e.preventDefault();
-	
-	        // If the frame already exists, re-open it.
-	        if ( media_frame ) {
-	        	media_frame.open();
-	            return;
-	        }
-	
+	        
+	        // Get our custom input field ID.
+		    var target_input = $( this ).prev().attr( 'id' );
+	        
 	        // Create custom media frame. Refer to the wp-includes/js/media-views.js file for more default options.
 	        media_frame = wp.media.frames.media_frame = wp.media( {
 		        
@@ -37,7 +37,7 @@
 	            // Allow mutiple file uploads.
 	            multiple: false,
 	            // Set custom media workflow title using the localized script object 'ajv_image_upload'.
-	            title: ajv_image_upload.frame_title
+	            title: ajv_image_upload.frame_title,
 	            // Limit media library access to images only.
 	            library: {
 	                type: 'image'
@@ -55,8 +55,8 @@
 	            var media_attachment = media_frame.state().get( 'selection' ).first().toJSON();
 	            
 	            // Send the attachment URL to our custom input field via jQuery.
-	            $( '.custom-media-url' ).val( media_attachment.url );
-	            $( '.custom-media-url' ).trigger( 'change' ); // Necessary to trigger refresh in Customizer.
+	            $( '#' + target_input ).val( media_attachment.url );
+	            $( '#' + target_input ).trigger( 'change' ); // Necessary to trigger refresh in Customizer.
 	            
 	        } );
 	        
