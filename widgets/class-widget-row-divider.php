@@ -32,6 +32,28 @@ class EWC_Row_Divider extends WP_Widget {
 			'id_base' => 'ewc-row-divider',
 		);
 		
+		// Define options filter and default values
+		$display = apply_filters( 'ewc_advanced_options', array(
+			'ewc_background' => array(
+				'display' => true,
+				'active' => 1,
+			),
+			'ewc_margin' => array(
+				'display' => true,
+				'active' => 0,
+			),
+			'ewc_padding' => array(
+				'display' => true,
+				'active' => 0,
+			),
+			'ewc_class' => array(
+				'display' => true,
+				'active' => 0,
+			),
+		) );
+		
+		$this->display = $display;
+		
 		parent::__construct( 'ewc-row-divider', '&#8212; ' . __( 'Widget Row', 'easy-widget-columns' ) . ' &#8212;', $widget_ops, $control_ops );
 		
 	}
@@ -66,42 +88,48 @@ class EWC_Row_Divider extends WP_Widget {
 		) );
 		
 		// Background color
-    	if ( !empty( $instance['background_color'] ) ) {
+    	if ( !empty( $instance['background_color'] )
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_color = $instance['background_color'];
     	} else {
 	    	$background_color = '';
     	}
     	
     	// Background image
-    	if ( !empty( $instance['background_image'] ) ) {
+    	if ( !empty( $instance['background_image'] )
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_image = ' ' . "url('" . $instance['background_image'] . "')";
     	} else {
 	    	$background_image = '';
     	}
     	
     	// Background repeat
-    	if ( !empty( $instance['background_repeat'] ) ) {
+    	if ( !empty( $instance['background_repeat'] )
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_repeat = ' ' . $instance['background_repeat'];
     	} else {
 	    	$background_repeat = '';
     	}
     	
     	// Background attachment
-    	if ( !empty( $instance['background_attachment'] ) ) {
+    	if ( !empty( $instance['background_attachment'] )
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_attachment = ' ' . $instance['background_attachment'];
     	} else {
 	    	$background_attachment = '';
     	}
     	
     	// Background position
-    	if ( !empty( $instance['background_position'] ) ) {
+    	if ( !empty( $instance['background_position'] )
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_position = ' ' . $instance['background_position'];
     	} else {
 	    	$background_position = '';
     	}
     	
     	// Background size
-    	if ( !empty( $instance['background_size'] ) && 'none' !== $instance['background_size'] ) {
+    	if ( !empty( $instance['background_size'] ) && 'none' !== $instance['background_size']
+    		&& ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) ) {
     		$background_size = 'background-size:' . $instance['background_size'] . ';';
     	} else {
 	    	$background_size = '';
@@ -112,20 +140,28 @@ class EWC_Row_Divider extends WP_Widget {
     	$padding_right = $instance['padding_right'];
     	$padding_bottom = $instance['padding_bottom'];
     	$padding_left = $instance['padding_left'];
-    	$padding = 'padding:' . $padding_top . 'px ' . $padding_right . 'px ' . $padding_bottom . 'px ' . $padding_left . 'px;';
-    	if ( 'padding:0px 0px 0px 0px;' == $padding ) {
-        	$padding = '';
-    	}
-    	
+    	if ( ( !empty( $this->display['ewc_padding']['display'] ) && true === $this->display['ewc_padding']['display'] ) ) {
+    		$padding = 'padding:' . $padding_top . 'px ' . $padding_right . 'px ' . $padding_bottom . 'px ' . $padding_left . 'px;';
+    		if ( 'padding:0px 0px 0px 0px;' == $padding ) {
+	    		$padding = '';
+	    	}
+    	} else {
+	    	$padding = '';
+	    }
+	    
     	// Margin
     	$margin_top = $instance['margin_top'];
     	$margin_right = $instance['margin_right'];
     	$margin_bottom = $instance['margin_bottom'];
     	$margin_left = $instance['margin_left'];
-    	$margin = 'margin:' . $margin_top . 'px ' . $margin_right . 'px ' . $margin_bottom . 'px ' . $margin_left . 'px;';
-    	if ( 'margin:0px 0px 0px 0px;' == $margin ) {
-        	$margin = '';
-    	}
+    	if ( ( !empty( $this->display['ewc_margin']['display'] ) && true === $this->display['ewc_margin']['display'] ) ) {
+	    	$margin = 'margin:' . $margin_top . 'px ' . $margin_right . 'px ' . $margin_bottom . 'px ' . $margin_left . 'px;';
+	    	if ( 'margin:0px 0px 0px 0px;' == $margin ) {
+	        	$margin = '';
+	    	}
+    	} else {
+	    	$margin = '';
+	    }
     	
     	// Inline styles
     	if ( ( !empty($background_color) || !empty($background_image) || !empty($padding) || !empty($margin) ) ) {
@@ -144,8 +180,22 @@ class EWC_Row_Divider extends WP_Widget {
     	}
     	
     	// Custom Classes
-    	if ( !empty( $instance['custom_classes'] ) ) {
-    		$custom_classes = ' ' . $instance['custom_classes'];
+    	if ( ( !empty( $instance['custom_classes'] ) || !empty( $instance['preset_classes'] ) )
+    		&& ( !empty( $this->display['ewc_class']['display'] ) && true === $this->display['ewc_class']['display'] ) ) {
+    		
+    		// Merge preset classes with custom classes
+    		if ( !empty( $instance['preset_classes'] ) && is_array( $instance['preset_classes'] ) ) {
+				$custom_classes = explode( ' ', $instance['custom_classes'] );
+				foreach ( $instance['preset_classes'] as $key => $value ) {
+					if ( !in_array( $value, $custom_classes ) ) {
+						$custom_classes[] = $value;
+					}
+				}
+				$custom_classes = ' ' . implode( ' ', $custom_classes );
+			} else {
+				$custom_classes = ' ' . $instance['custom_classes'];
+			}
+    		
     	} else {
 	    	$custom_classes = '';
     	}
@@ -162,7 +212,8 @@ class EWC_Row_Divider extends WP_Widget {
 		$position_id = array_search( $this->id, $sidebar_id );
 		
     	// Assign the closing widget row markup
-		if ( isset( $sidebar_id[$position_id-1] ) && !in_array( _get_widget_id_base( $sidebar_id[$position_id-1] ), array('ewc-row-divider') ) ) {
+		if ( isset( $sidebar_id[$position_id-1] )
+			&& !in_array( _get_widget_id_base( $sidebar_id[$position_id-1] ), array( 'ewc-row-divider', 'ewc-subrow-divider' ) ) ) {
 			
 			// Get widget above options
 	    	$widget_above_option = get_option( $wp_registered_widgets[$sidebar_id[$position_id-1]]['callback'][0]->option_name );
@@ -182,7 +233,8 @@ class EWC_Row_Divider extends WP_Widget {
 		}
     	
 		// Assign the opening widget row markup
-		if ( isset( $sidebar_id[$position_id+1] ) && !in_array( _get_widget_id_base( $sidebar_id[$position_id+1] ), array('ewc-row-divider') ) ) {
+		if ( isset( $sidebar_id[$position_id+1] )
+			&& !in_array( _get_widget_id_base( $sidebar_id[$position_id+1] ), array( 'ewc-row-divider', 'ewc-subrow-divider' ) ) ) {
 			
 			// Get widget below options
 	    	$widget_below_option = get_option( $wp_registered_widgets[$sidebar_id[$position_id+1]]['callback'][0]->option_name );
@@ -217,6 +269,10 @@ class EWC_Row_Divider extends WP_Widget {
 		
 		$instance = $old_instance;
 		$instance['show_options'] = strip_tags( $new_instance['show_options'] );
+		$instance['show_background'] = strip_tags( $new_instance['show_background'] );
+		$instance['show_margin'] = strip_tags( $new_instance['show_margin'] );
+		$instance['show_padding'] = strip_tags( $new_instance['show_padding'] );
+		$instance['show_class'] = strip_tags( $new_instance['show_class'] );
 		$instance['background_color'] = strip_tags( sanitize_hex_color( $new_instance['background_color'] ) );
 		$instance['background_image'] = esc_url( $new_instance['background_image'] );
 		$instance['background_repeat'] = strip_tags( $new_instance['background_repeat'] );
@@ -231,7 +287,8 @@ class EWC_Row_Divider extends WP_Widget {
 		$instance['margin_right'] = absint( $new_instance['margin_right'] );
 		$instance['margin_bottom'] = absint( $new_instance['margin_bottom'] );
 		$instance['margin_left'] = absint( $new_instance['margin_left'] );
-		$instance['custom_classes'] = strip_tags( $new_instance['custom_classes'] );
+		$instance['custom_classes'] = strip_tags( preg_replace( array( '/\s*,\s*/', '/\s+/' ), ' ', $new_instance['custom_classes'] ) );
+		$instance['preset_classes'] = array_map( 'strip_tags', $new_instance['preset_classes'] );
 		
 		return $instance;
 		
@@ -244,8 +301,19 @@ class EWC_Row_Divider extends WP_Widget {
      **/
 	public function form( $instance ) {
 		
+		// Sanitize filter values
+		$show_background = !empty( $this->display['ewc_background']['active'] ) ? $this->display['ewc_background']['active'] : 0;
+		$show_margin = !empty( $this->display['ewc_margin']['active'] ) ? $this->display['ewc_margin']['active'] : 0;
+		$show_padding = !empty( $this->display['ewc_padding']['active'] ) ? $this->display['ewc_padding']['active'] : 0;
+		$show_class = !empty( $this->display['ewc_class']['active'] ) ? $this->display['ewc_class']['active'] : 0;
+		
+		// Set widget default values
 		$defaults = array(
 			'show_options' => 0,
+			'show_background' => $show_background,
+			'show_margin' => $show_margin,
+			'show_padding' => $show_padding,
+			'show_class' => $show_class,
 			'background_color' => '',
 			'background_image' => '',
 			'background_repeat' => 'repeat',
@@ -261,163 +329,215 @@ class EWC_Row_Divider extends WP_Widget {
 			'margin_bottom' => 0,
 			'margin_left' => 0,
 			'custom_classes' => '',
+			'preset_classes' => array(),
 		);
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
+		$instance = wp_parse_args( (array) $instance, $defaults );  ?>
 		
-		<p><?php _e('Use this widget to start or close a new row of widget columns.', 'easy-widget-columns'); ?></p> <?php
+		<p><?php _e( 'Use this widget to start or close a new row of widget columns.', 'easy-widget-columns' ); ?></p> <?php
 		
 		if ( apply_filters( 'ewc_advanced_options', true ) ) { ?>
 		
-			<input class="ewc-options-checkbox" id="<?php echo $this->get_field_id( 'show_options' ); ?>" type="checkbox" name="<?php echo $this->get_field_name('show_options'); ?>" value="1" <?php checked( 1, $instance['show_options'] ); ?>/>
+			<input type="checkbox" class="ewc-options-checkbox" id="<?php echo $this->get_field_id( 'show_options' ); ?>" name="<?php echo $this->get_field_name('show_options'); ?>" value="1" <?php checked( 1, $instance['show_options'] ); ?>/>
 			<label class="ewc-options-label" for="<?php echo $this->get_field_id( 'show_options' ); ?>"><?php _e( 'Advanced options', 'easy-widget-columns' ); ?></label>
 			
-			<div class="ewc-row-styles">
+			<div class="ewc-row-styles"> <?php
+		
+				if ( !empty( $this->display['ewc_background']['display'] ) && true === $this->display['ewc_background']['display'] ) { ?>
 				
-				<p>
-					<label class="ewc-section-label" for="<?php echo $this->get_field_id( 'background_color' ); ?>"><?php _e( 'Row background', 'easy-widget-columns' ); ?></label><br>
-					<label for="<?php echo $this->get_field_id( 'background_color' ); ?>"><?php _e( 'Color:', 'easy-widget-columns' ); ?></label><br />
-					<input class="color-picker" id="<?php echo $this->get_field_id( 'background_color' ); ?>" name="<?php echo $this->get_field_name( 'background_color' ); ?>" type="text" value="<?php echo $instance['background_color']; ?>" data-default-color=""/>
-				</p>
+				<input type="checkbox" class="ewc-label-checkbox ewc-background-checkbox" id="<?php echo $this->get_field_id( 'show_background' ); ?>" name="<?php echo $this->get_field_name('show_background'); ?>" value="1" <?php checked( 1, $instance['show_background'] ); ?>/>
+				<label class="ewc-section-label ewc-background-label" for="<?php echo $this->get_field_id( 'show_background' ); ?>"><?php _e( 'Row background', 'easy-widget-columns' ); ?></label>
 				
-				<p>
+				<div class="ewc-section-settings ewc-background-settings">
+				
+					<p style="margin-top:2px;">
+						<label for="<?php echo $this->get_field_id( 'background_color' ); ?>"><?php _e( 'Color:', 'easy-widget-columns' ); ?></label><br />
+						<input class="color-picker" id="<?php echo $this->get_field_id( 'background_color' ); ?>" name="<?php echo $this->get_field_name( 'background_color' ); ?>" type="text" value="<?php echo $instance['background_color']; ?>" data-default-color=""/>
+					</p>
+					
 			        <label for="<?php echo $this->get_field_id( 'background_image' ); ?>"><?php _e( 'Image:', 'easy-widget-columns' ); ?></label>
-			        <input type="text" class="widefat custom-media-url" name="<?php echo $this->get_field_name( 'background_image' ); ?>" id="<?php echo $this->get_field_id('background_image'); ?>" value="<?php echo $instance['background_image']; ?>" placeholder="<?php _e( 'Enter URL or select image', 'easy-widget-columns' ); ?>">
-			        <input type="button" class="button custom-media-button" name="<?php echo $this->get_field_name( 'background_image' ); ?>" value="Select Image" style="margin-top:5px;" />
-			    </p>
-			    
-			    <span class="ewc-image-properties">
+			        <input required type="text" class="widefat custom-media-url" name="<?php echo $this->get_field_name( 'background_image' ); ?>" id="<?php echo $this->get_field_id('background_image'); ?>" value="<?php echo $instance['background_image']; ?>" placeholder="<?php _e( 'Enter URL or select image', 'easy-widget-columns' ); ?>"/>
+			        <button type="button" class="button custom-media-button" id="<?php echo $this->get_field_id('media_button'); ?>" name="<?php echo $this->get_field_name( 'background_image' ); ?>"><?php _e( 'Select Image', 'easy-widget-columns' ); ?></button>
 				    
-				    <p class="first image-properties-dropdown">
-						<label for="<?php echo $this->get_field_id( 'background_repeat' ); ?>"><?php _e( 'Repeat:' ); ?></label><br />
-						<select id="<?php echo $this->get_field_id( 'background_repeat' ); ?>" name="<?php echo $this->get_field_name( 'background_repeat' ); ?>"> <?php
-							$repeat_options = array(
-								__( 'Tile', 'easy-widget-columns' ) => 'repeat',
-								__( 'Horizontal', 'easy-widget-columns' ) => 'repeat-x',
-								__( 'Vertical', 'easy-widget-columns' ) => 'repeat-y',
-								__( 'No Repeat', 'easy-widget-columns' ) => 'no-repeat',
-							);
-							foreach ( $repeat_options as $key => $value ) {
-								echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_repeat'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
-							} ?>
-						</select>
-					</p>
-					
-					<p class="image-properties-dropdown">
-						<label for="<?php echo $this->get_field_id( 'background_attachment' ); ?>"><?php _e( 'Attachment:' ); ?></label><br />
-						<select id="<?php echo $this->get_field_id( 'background_attachment' ); ?>" name="<?php echo $this->get_field_name( 'background_attachment' ); ?>"> <?php
-							$attachment_options = array(
-								__( 'Scroll', 'easy-widget-columns' ) => 'scroll',
-								__( 'Fixed', 'easy-widget-columns' ) => 'fixed',
-							);
-							foreach ( $attachment_options as $key => $value ) {
-								echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_attachment'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
-							} ?>
-						</select>
-					</p>
-					
-					<p class="first image-properties-dropdown">
-						<label for="<?php echo $this->get_field_id( 'background_position' ); ?>"><?php _e( 'Position:' ); ?></label><br />
-						<select id="<?php echo $this->get_field_id( 'background_position' ); ?>" name="<?php echo $this->get_field_name( 'background_position' ); ?>"> <?php
-							$position_options = array(
-								__( 'Left Top', 'easy-widget-columns' ) => 'left top',
-								__( 'Left Center', 'easy-widget-columns' ) => 'left center',
-								__( 'Left Bottom', 'easy-widget-columns' ) => 'left bottom',
-								__( 'Right Top', 'easy-widget-columns' ) => 'right top',
-								__( 'Right Center', 'easy-widget-columns' ) => 'right center',
-								__( 'Right Bottom', 'easy-widget-columns' ) => 'right bottom',
-								__( 'Center Top', 'easy-widget-columns' ) => 'center top',
-								__( 'Center', 'easy-widget-columns' ) => 'center center',
-								__( 'Center Bottom', 'easy-widget-columns' ) => 'center bottom',
-							);
-							foreach ( $position_options as $key => $value ) {
-								echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_position'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
-							} ?>
-						</select>
-					</p>
-					
-					<p class="image-properties-dropdown">
-						<label for="<?php echo $this->get_field_id( 'background_size' ); ?>"><?php _e( 'Scale:' ); ?></label><br />
-						<select id="<?php echo $this->get_field_id( 'background_size' ); ?>" name="<?php echo $this->get_field_name( 'background_size' ); ?>"> <?php
-							$size_options = array(
-								__( 'None', 'easy-widget-columns' ) => 'none',
-								__( 'Cover', 'easy-widget-columns' ) => 'cover',
-								__( 'Contain', 'easy-widget-columns' ) => 'contain',
-							);
-							foreach ( $size_options as $key => $value ) {
-								echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_size'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
-							} ?>
-						</select>
-					</p>
-					
-			    </span>
+				    <div class="ewc-image-properties">
+					    
+					    <p class="first image-properties-dropdown">
+							<label for="<?php echo $this->get_field_id( 'background_repeat' ); ?>"><?php _e( 'Repeat:' ); ?></label><br />
+							<select id="<?php echo $this->get_field_id( 'background_repeat' ); ?>" name="<?php echo $this->get_field_name( 'background_repeat' ); ?>"> <?php
+								$repeat_options = array(
+									__( 'Tile', 'easy-widget-columns' ) => 'repeat',
+									__( 'Horizontal', 'easy-widget-columns' ) => 'repeat-x',
+									__( 'Vertical', 'easy-widget-columns' ) => 'repeat-y',
+									__( 'No Repeat', 'easy-widget-columns' ) => 'no-repeat',
+								);
+								foreach ( $repeat_options as $key => $value ) {
+									echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_repeat'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
+								} ?>
+							</select>
+						</p>
+						
+						<p class="image-properties-dropdown">
+							<label for="<?php echo $this->get_field_id( 'background_attachment' ); ?>"><?php _e( 'Attachment:' ); ?></label><br />
+							<select id="<?php echo $this->get_field_id( 'background_attachment' ); ?>" name="<?php echo $this->get_field_name( 'background_attachment' ); ?>"> <?php
+								$attachment_options = array(
+									__( 'Scroll', 'easy-widget-columns' ) => 'scroll',
+									__( 'Fixed', 'easy-widget-columns' ) => 'fixed',
+								);
+								foreach ( $attachment_options as $key => $value ) {
+									echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_attachment'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
+								} ?>
+							</select>
+						</p>
+						
+						<p class="first image-properties-dropdown">
+							<label for="<?php echo $this->get_field_id( 'background_position' ); ?>"><?php _e( 'Position:' ); ?></label><br />
+							<select id="<?php echo $this->get_field_id( 'background_position' ); ?>" name="<?php echo $this->get_field_name( 'background_position' ); ?>"> <?php
+								$position_options = array(
+									__( 'Left Top', 'easy-widget-columns' ) => 'left top',
+									__( 'Left Center', 'easy-widget-columns' ) => 'left center',
+									__( 'Left Bottom', 'easy-widget-columns' ) => 'left bottom',
+									__( 'Right Top', 'easy-widget-columns' ) => 'right top',
+									__( 'Right Center', 'easy-widget-columns' ) => 'right center',
+									__( 'Right Bottom', 'easy-widget-columns' ) => 'right bottom',
+									__( 'Center Top', 'easy-widget-columns' ) => 'center top',
+									__( 'Center', 'easy-widget-columns' ) => 'center center',
+									__( 'Center Bottom', 'easy-widget-columns' ) => 'center bottom',
+								);
+								foreach ( $position_options as $key => $value ) {
+									echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_position'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
+								} ?>
+							</select>
+						</p>
+						
+						<p class="image-properties-dropdown">
+							<label for="<?php echo $this->get_field_id( 'background_size' ); ?>"><?php _e( 'Scale:' ); ?></label><br />
+							<select id="<?php echo $this->get_field_id( 'background_size' ); ?>" name="<?php echo $this->get_field_name( 'background_size' ); ?>"> <?php
+								$size_options = array(
+									__( 'None', 'easy-widget-columns' ) => 'none',
+									__( 'Cover', 'easy-widget-columns' ) => 'cover',
+									__( 'Contain', 'easy-widget-columns' ) => 'contain',
+								);
+								foreach ( $size_options as $key => $value ) {
+									echo '<option value="' . $value . '" id="' . $value . '"', $instance['background_size'] == $value ? ' selected="selected"' : '', '>', $key, '</option>';
+								} ?>
+							</select>
+						</p>
+						
+				    </div>
+				    
+				</div>
 			    
-			    <hr>
+			    <hr> <?php
+			    
+			    } 
+			    
+			    if ( !empty( $this->display['ewc_margin']['display'] ) && true === $this->display['ewc_margin']['display'] ) { ?>
 				
-				<label class="ewc-section-label" style="margin-top:7px;"><?php _e('Row margin', 'easy-widget-columns'); ?></label>
+				<input type="checkbox" class="ewc-label-checkbox ewc-margin-checkbox" id="<?php echo $this->get_field_id( 'show_margin' ); ?>" name="<?php echo $this->get_field_name('show_margin'); ?>" value="1" <?php checked( 1, $instance['show_margin'] ); ?>/>
+				<label class="ewc-section-label" for="<?php echo $this->get_field_id( 'show_margin' ); ?>"><?php _e('Row margin', 'easy-widget-columns'); ?></label>
 				
-				<table class="ewc-widget-table">
-					<tr>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'margin_top' ); ?>"><?php _e( 'top:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_top' ); ?>" name="<?php echo $this->get_field_name( 'margin_top' ); ?>" value="<?php echo $instance['margin_top']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'margin_top' ); ?>">px</label>
-						</td>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'margin_right' ); ?>"><?php _e( 'right:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_right' ); ?>" name="<?php echo $this->get_field_name( 'margin_right' ); ?>" value="<?php echo $instance['margin_right']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'margin_right' ); ?>">px</label>
-						</td>
-					</tr>
-					<tr>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'margin_bottom' ); ?>"><?php _e( 'btm:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_bottom' ); ?>" name="<?php echo $this->get_field_name( 'margin_bottom' ); ?>" value="<?php echo $instance['margin_bottom']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'margin_bottom' ); ?>">px</label>
-						</td>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'margin_left' ); ?>"><?php _e( 'left:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_left' ); ?>" name="<?php echo $this->get_field_name( 'margin_left' ); ?>" value="<?php echo $instance['margin_left']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'margin_left' ); ?>">px</label>
-						</td>
-					</tr>
-				</table>
+				<div class="ewc-section-settings ewc-widget-table ewc-margin-settings">
+					<table class="ewc-margin-table">
+						<tr>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'margin_top' ); ?>"><?php _e( 'top:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_top' ); ?>" name="<?php echo $this->get_field_name( 'margin_top' ); ?>" value="<?php echo $instance['margin_top']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'margin_top' ); ?>">px</label>
+							</td>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'margin_right' ); ?>"><?php _e( 'right:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_right' ); ?>" name="<?php echo $this->get_field_name( 'margin_right' ); ?>" value="<?php echo $instance['margin_right']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'margin_right' ); ?>">px</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'margin_bottom' ); ?>"><?php _e( 'btm:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_bottom' ); ?>" name="<?php echo $this->get_field_name( 'margin_bottom' ); ?>" value="<?php echo $instance['margin_bottom']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'margin_bottom' ); ?>">px</label>
+							</td>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'margin_left' ); ?>"><?php _e( 'left:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'margin_left' ); ?>" name="<?php echo $this->get_field_name( 'margin_left' ); ?>" value="<?php echo $instance['margin_left']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'margin_left' ); ?>">px</label>
+							</td>
+						</tr>
+					</table>
+				</div>
 				
-				<hr><label class="ewc-section-label" style="margin-top:7px;"><?php _e( 'Row padding', 'easy-widget-columns' ); ?></label>
+				<hr> <?php
+			    
+			    }
+			    
+			    if ( !empty( $this->display['ewc_padding']['display'] ) && true === $this->display['ewc_padding']['display'] ) { ?>
 				
-				<table class="ewc-widget-table">
-					<tr>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'padding_top' ); ?>"><?php _e( 'top:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_top' ); ?>" name="<?php echo $this->get_field_name( 'padding_top' ); ?>" value="<?php echo $instance['padding_top']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'padding_top' ); ?>">px</label>
-						</td>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'padding_right' ); ?>"><?php _e( 'right:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_right' ); ?>" name="<?php echo $this->get_field_name( 'padding_right' ); ?>" value="<?php echo $instance['padding_right']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'padding_right' ); ?>">px</label>
-						</td>
-					</tr>
-					<tr>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'padding_bottom' ); ?>"><?php _e( 'btm:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_bottom' ); ?>" name="<?php echo $this->get_field_name( 'padding_bottom' ); ?>" value="<?php echo $instance['padding_bottom']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'padding_bottom' ); ?>">px</label>
-						</td>
-						<td class="row-content">
-							<label class="row-label" for="<?php echo $this->get_field_id( 'padding_left' ); ?>"><?php _e( 'left:', 'easy-widget-columns' ); ?></label>
-							<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_left' ); ?>" name="<?php echo $this->get_field_name( 'padding_left' ); ?>" value="<?php echo $instance['padding_left']; ?>" style="width:50px;" />
-							<label for="<?php echo $this->get_field_id( 'padding_left' ); ?>">px</label>
-						</td>
-					</tr>
-				</table>
+				<input type="checkbox" class="ewc-label-checkbox ewc-padding-checkbox" id="<?php echo $this->get_field_id( 'show_padding' ); ?>" name="<?php echo $this->get_field_name('show_padding'); ?>" value="1" <?php checked( 1, $instance['show_padding'] ); ?>/>
+				<label class="ewc-section-label" for="<?php echo $this->get_field_id( 'show_padding' ); ?>"><?php _e( 'Row padding', 'easy-widget-columns' ); ?></label>
 				
-				<hr>
+				<div class="ewc-section-settings ewc-widget-table ewc-padding-settings">
+					<table class="ewc-padding-table">
+						<tr>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'padding_top' ); ?>"><?php _e( 'top:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_top' ); ?>" name="<?php echo $this->get_field_name( 'padding_top' ); ?>" value="<?php echo $instance['padding_top']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'padding_top' ); ?>">px</label>
+							</td>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'padding_right' ); ?>"><?php _e( 'right:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_right' ); ?>" name="<?php echo $this->get_field_name( 'padding_right' ); ?>" value="<?php echo $instance['padding_right']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'padding_right' ); ?>">px</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'padding_bottom' ); ?>"><?php _e( 'btm:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_bottom' ); ?>" name="<?php echo $this->get_field_name( 'padding_bottom' ); ?>" value="<?php echo $instance['padding_bottom']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'padding_bottom' ); ?>">px</label>
+							</td>
+							<td class="row-content">
+								<label class="row-label" for="<?php echo $this->get_field_id( 'padding_left' ); ?>"><?php _e( 'left:', 'easy-widget-columns' ); ?></label>
+								<input type="number" step="1" min="0" id="<?php echo $this->get_field_id( 'padding_left' ); ?>" name="<?php echo $this->get_field_name( 'padding_left' ); ?>" value="<?php echo $instance['padding_left']; ?>" style="width:50px;"/>
+								<label for="<?php echo $this->get_field_id( 'padding_left' ); ?>">px</label>
+							</td>
+						</tr>
+					</table>
+				</div>
 				
-				<p>
-					<label class="ewc-section-label" for="<?php echo $this->get_field_id( 'custom_classes' ); ?>"><?php _e( 'Custom classes', 'easy-widget-columns' ); ?></label>
-					<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'custom_classes' ); ?>" name="<?php echo $this->get_field_name( 'custom_classes' ); ?>" value="<?php echo $instance['custom_classes']; ?>" />
-					<span class="description" style="padding-left:2px;"><em><?php _e( 'Separate classes by a space.', 'easy-widget-columns' ) ?></em></span>
-				</p>
+				<hr> <?php
+			    
+			    }
+			    
+			    if ( !empty( $this->display['ewc_class']['display'] ) && true === $this->display['ewc_class']['display'] ) { ?>
+				
+				<input type="checkbox" class="ewc-label-checkbox ewc-class-checkbox" id="<?php echo $this->get_field_id( 'show_class' ); ?>" name="<?php echo $this->get_field_name('show_class'); ?>" value="1" <?php checked( 1, $instance['show_class'] ); ?>/>
+				<label class="ewc-section-label" for="<?php echo $this->get_field_id( 'show_class' ); ?>"><?php _e( 'CSS classes', 'easy-widget-columns' ); ?></label>
+				
+				<div class="ewc-section-settings ewc-class-settings">
+					<input type="text" class="widefat" id="<?php echo $this->get_field_id( 'custom_classes' ); ?>" name="<?php echo $this->get_field_name( 'custom_classes' ); ?>" value="<?php echo $instance['custom_classes']; ?>" placeholder="<?php _e( 'Enter custom classes', 'easy-widget-columns' ); ?>"/> <?php
+					$presets = apply_filters( 'ewc_preset_classes', array() );
+					
+					if ( !empty( $presets ) ) { ?>
+					
+					<ul class="ewc-preset-classes" id="<?php echo $this->get_field_id( 'preset_classes' ); ?>"> <?php
+						
+						foreach ( $presets as $preset ) {
+							$checked = '';
+							if ( isset( $instance['preset_classes'] ) && in_array( $preset, $instance['preset_classes'] ) ) {
+								$checked = 'checked="checked"';
+							} ?>
+							<li>
+								<input type="checkbox" class="ewc-preset-class" id="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>" name="<?php echo $this->get_field_name('preset_classes'); ?>[]" value="<?php echo $preset; ?>" <?php echo $checked; ?>/>
+								<label class="ewc-preset-label" for="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>"><?php echo $preset; ?></label>
+							</li> <?php
+						} ?>
+						
+					</ul> <?php
+						
+					} ?>
+				</div>
+				
+				<hr> <?php
+			    
+			    } ?>
 								
 			</div> <?php
 			
