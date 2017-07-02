@@ -62,9 +62,14 @@ class Easy_Widget_Columns_Widgets {
 	private function load_widget_classes() {
 	
 		/**
-		 * The class responsible for defining the Row Divider widget.
+		 * The class responsible for defining the Widget Row widget.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/class-widget-row-divider.php';
+		
+		/**
+		 * The class responsible for defining the Sub Row widget.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/class-widget-subrow-divider.php';
 	
 	}
 	
@@ -165,8 +170,11 @@ class Easy_Widget_Columns_Widgets {
      **/
     public function register_widgets() {
 	    
-	    // Register the Row Divider widget
+	    // Register the Widget Row widget
         register_widget( 'EWC_Row_Divider' );
+        
+        // Register the Sub-Row widget
+        register_widget( 'EWC_Sub_Row_Divider' );
         
     }
 
