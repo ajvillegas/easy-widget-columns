@@ -4,7 +4,7 @@
  * Uses the default WordPress media uploader to set the image URL value
  * in the Row Divider widget.
  *
- * @since      1.1.5
+ * @since	1.1.5
  *
  */
  
@@ -19,7 +19,7 @@
 	    var target_input;
 	    
 	    // Bind to our click event in order to open up the new media experience.
-	    $( document.body ).on( 'click.ewcOpenMediaManager', '.custom-media-button', function( e ) {
+	    $( document.body ).on( 'click.ajvOpenMediaManager', '.custom-media-button', function( e ) {
 		    
 	        // Prevent the default action from occuring.
 	        e.preventDefault();
@@ -31,7 +31,7 @@
 	        media_frame = wp.media.frames.media_frame = wp.media( {
 		        
 	            // Custom class name for our media frame.
-	            className: 'media-frame ewc-media-frame',
+	            className: 'media-frame ajv-media-frame',
 	            // Assign 'select' workflow since we only want to upload an image. Use the 'post' workflow for posts.
 	            frame: 'select',
 	            // Allow mutiple file uploads.
