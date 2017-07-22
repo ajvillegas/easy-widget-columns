@@ -690,7 +690,7 @@ input.custom-media-url:invalid ~ .ewc-image-properties {
  * Media Modal
  */
  
-.media-frame.ewc-media-frame select.attachment-filters {
+.media-modal-content .media-frame.ajv-media-frame select.attachment-filters {
 	width: 100%;
 	max-width: 100%;
 }
