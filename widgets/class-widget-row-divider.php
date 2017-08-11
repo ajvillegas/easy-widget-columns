@@ -517,20 +517,34 @@ class EWC_Row_Divider extends WP_Widget {
 					
 					if ( !empty( $presets ) ) { ?>
 					
-					<ul class="ewc-preset-classes" id="<?php echo $this->get_field_id( 'preset_classes' ); ?>"> <?php
-						
-						foreach ( $presets as $preset ) {
-							$checked = '';
-							if ( isset( $instance['preset_classes'] ) && in_array( $preset, $instance['preset_classes'] ) ) {
-								$checked = 'checked="checked"';
+						<ul class="ewc-preset-classes" id="<?php echo $this->get_field_id( 'preset_classes' ); ?>"> <?php
+							
+							foreach ( $presets as $preset ) {
+								$checked = '';
+								if ( isset( $instance['preset_classes'] ) && in_array( $preset, $instance['preset_classes'] ) ) {
+									$checked = 'checked="checked"';
+								} ?>
+								<li>
+									<input type="checkbox" class="ewc-preset-class" id="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>" name="<?php echo $this->get_field_name('preset_classes'); ?>[]" value="<?php echo $preset; ?>" <?php echo $checked; ?>/>
+									<label class="ewc-preset-label" for="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>"><?php echo $preset; ?></label>
+								</li> <?php
 							} ?>
-							<li>
-								<input type="checkbox" class="ewc-preset-class" id="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>" name="<?php echo $this->get_field_name('preset_classes'); ?>[]" value="<?php echo $preset; ?>" <?php echo $checked; ?>/>
-								<label class="ewc-preset-label" for="<?php echo $this->get_field_id( 'preset_classes' ) . '-' . $preset; ?>"><?php echo $preset; ?></label>
-							</li> <?php
-						} ?>
+							
+						</ul> <?php
+							
+						if ( 0 != count( $instance['preset_classes'] ) ) {
+							
+							if ( 1 == count( $instance['preset_classes'] ) ) {
+								$count_message = ' class checked above';
+							} else {
+								$count_message = ' classes checked above';
+							} ?>
 						
-					</ul> <?php
+							<p class="checked-count description" style="padding-bottom:0;">
+								<?php echo count( $instance['preset_classes'] ) . $count_message; ?>
+							</p> <?php
+						
+						}
 						
 					} ?>
 				</div>
