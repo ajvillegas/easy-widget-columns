@@ -139,7 +139,7 @@ function myprefix_preset_classes( $classes ) {
 
 **ewc_advanced_options**
 
-This filter allows you remove specific or all advanced options from the 'Widget Row' widget. This can be useful for limiting design functionality on a client website ([decisions, not options](https://wordpress.org/about/philosophy/#decisions)).
+This filter allows you to remove specific or all advanced options from the 'Widget Row' widget. This can be useful for limiting design functionality on a client website ([decisions, not options](https://wordpress.org/about/philosophy/#decisions)).
 
 The following example demonstrates how to completely remove all advanced options.
 
