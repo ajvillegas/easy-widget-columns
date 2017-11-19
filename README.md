@@ -6,7 +6,7 @@ Easily display widgets in rows of columns.
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
 **Requires at least**: 4.5  
 **Tested up to**: 4.9  
-**Stable tag**: 1.2.0  
+**Stable tag**: 1.2.1  
 **License**: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
 # Description
@@ -269,6 +269,9 @@ To define new sub-rows within a widget row use the 'Sub-Row' widget at the start
 ![Custom homepage with delineated widget rows for reference](wp-assets/screenshot-7.png?raw=true)
 
 # Changelog
+
+**1.2.1**
+* Fixed bug with the widget update callback filter that was preventing widget settings from saving.
 
 **1.2.0**
 * Enhanced UI for the Widget Row advanced options.
