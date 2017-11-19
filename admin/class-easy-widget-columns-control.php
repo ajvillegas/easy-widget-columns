@@ -166,6 +166,7 @@ class Easy_Widget_Columns_Control {
 	public function widget_update( $instance, $new_instance, $old_instance ) {
 		
 		$instance['ewc_width'] = strip_tags( $new_instance['ewc_width'] );
+		
 		return $instance;
 		
 	}
@@ -191,6 +192,7 @@ class Easy_Widget_Columns_Control {
 	public function get_widget_id( $widget ) {
 		
 		preg_match( '/-([0-9]+)$/', $widget, $matches );
+		
 		return $matches[1];
 		
 	}
