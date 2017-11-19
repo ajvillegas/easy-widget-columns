@@ -69,7 +69,7 @@ class Easy_Widget_Columns {
 	public function __construct() {
 
 		$this->plugin_name = 'easy-widget-columns';
-		$this->version = '1.2.0';
+		$this->version = '1.2.1';
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
@@ -206,7 +206,7 @@ class Easy_Widget_Columns {
 		$this->loader->add_action( 'in_widget_form', $plugin_control, 'widget_form', 10, 3 );
 		
 		// Process the widget's options to be saved
-		$this->loader->add_action( 'widget_update_callback', $plugin_control, 'widget_update', 10, 2 );
+		$this->loader->add_action( 'widget_update_callback', $plugin_control, 'widget_update', 10, 3 );
 		
 		// Filter the widget's sidebar parameters
 		$this->loader->add_action( 'dynamic_sidebar_params', $plugin_control, 'sidebar_params', 9999 );
