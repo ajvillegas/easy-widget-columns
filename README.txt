@@ -34,7 +34,7 @@ The following filters are available for you to take full control of the plugin o
 * `ewc_exclude_widgets` - This blacklist filter is used to remove the width control from the specified widgets.
 * `ewc_color_palette` - This filter allows you to add a custom color palette to the color picker control in the 'Widget Row' widget.
 * `ewc_preset_classes` - This filter allows you assign preset CSS classes that display as a checkbox list in the 'Widget Row' widget.
-* `ewc_advanced_options` - This filter allows you remove specific or all advanced options from the 'Widget Row' widget.
+* `ewc_advanced_options` - This filter allows you to remove specific or all advanced options from the 'Widget Row' widget.
 
 **ewc_include_widgets**   
 **ewc_exclude_widgets**
