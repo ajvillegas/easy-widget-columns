@@ -4,7 +4,7 @@ Donate link:
 Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,6 +236,9 @@ To define new sub-rows within a widget row use the 'Sub-Row' widget at the start
 7. Custom homepage with delineated widget rows for reference
 
 == Changelog ==
+
+= 1.2.2 =
+* Removed the the `required` attribute from the image URL input field in the 'Widget Row' widget (originally used for styling purposes) to prevent issues when saving.
 
 = 1.2.1 =
 * Fixed bug with the widget update callback filter that was preventing widget settings from saving.
