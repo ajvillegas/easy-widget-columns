@@ -632,7 +632,7 @@ input[type=checkbox].ewc-label-checkbox:checked + .ewc-section-label:after {
 	margin: 5px 0 8px;
 }
 
-input.custom-media-url:invalid ~ .ewc-image-properties {
+input.custom-media-url:placeholder-shown ~ .ewc-image-properties {
 	display: none;
 }
 
