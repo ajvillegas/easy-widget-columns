@@ -532,7 +532,7 @@ class EWC_Row_Divider extends WP_Widget {
 							
 						</ul> <?php
 							
-						if ( 0 != count( $instance['preset_classes'] ) ) {
+						if ( $instance['preset_classes'] && 0 != count( $instance['preset_classes'] ) ) {
 							
 							if ( 1 == count( $instance['preset_classes'] ) ) {
 								$count_message = ' class checked above';
