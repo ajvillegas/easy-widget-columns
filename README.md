@@ -271,7 +271,7 @@ To define new sub-rows within a widget row use the 'Sub-Row' widget at the start
 # Changelog
 
 **1.2.2**
-* Removed the the `required` attribute from the image URL input field in the 'Widget Row' widget (originally used for styling purposes) to prevent issues when saving.
+* Removed the `required` attribute from the image URL input field in the 'Widget Row' widget (originally used for styling purposes) to prevent issues when saving.
 
 **1.2.1**
 * Fixed bug with the widget update callback filter that was preventing widget settings from saving.
