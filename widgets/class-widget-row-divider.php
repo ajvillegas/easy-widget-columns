@@ -355,7 +355,7 @@ class EWC_Row_Divider extends WP_Widget {
 					</p>
 					
 			        <label for="<?php echo $this->get_field_id( 'background_image' ); ?>"><?php _e( 'Image:', 'easy-widget-columns' ); ?></label>
-			        <input required type="text" class="widefat custom-media-url" name="<?php echo $this->get_field_name( 'background_image' ); ?>" id="<?php echo $this->get_field_id('background_image'); ?>" value="<?php echo $instance['background_image']; ?>" placeholder="<?php _e( 'Enter URL or select image', 'easy-widget-columns' ); ?>"/>
+			        <input type="url" class="widefat custom-media-url" name="<?php echo $this->get_field_name( 'background_image' ); ?>" id="<?php echo $this->get_field_id('background_image'); ?>" value="<?php echo $instance['background_image']; ?>" placeholder="<?php _e( 'Enter URL or select image', 'easy-widget-columns' ); ?>"/>
 			        <button type="button" class="button custom-media-button" id="<?php echo $this->get_field_id('media_button'); ?>" name="<?php echo $this->get_field_name( 'background_image' ); ?>"><?php _e( 'Select Image', 'easy-widget-columns' ); ?></button>
 				    
 				    <div class="ewc-image-properties">
