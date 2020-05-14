@@ -1,10 +1,11 @@
 === Easy Widget Columns ===
 Contributors: ajvillegas
-Donate link:   
+Donate link:
 Tags: widget, admin, columns, layout, widget columns
-Requires at least: 4.5
-Tested up to: 4.9
-Stable tag: 1.2.3
+Requires at least: 4.6
+Tested up to: 5.4
+Requires PHP: 5.6
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,8 +37,7 @@ The following filters are available for you to take full control of the plugin o
 * `ewc_preset_classes` - This filter allows you assign preset CSS classes that display as a checkbox list in the 'Widget Row' widget.
 * `ewc_advanced_options` - This filter allows you to remove specific or all advanced options from the 'Widget Row' widget.
 
-**ewc_include_widgets**   
-**ewc_exclude_widgets**
+**1. ewc_include_widgets / ewc_exclude_widgets**
 
 Both filters accept the widget's ID base as parameters. Please note that you cannot use both filters at once. The `ewc_include_widgets` filter will always take precedence over the `ewc_exclude_widgets` filter and overwrite it.
 
@@ -47,43 +47,43 @@ The examples below demonstrate how you can implement these filters on your theme
 /**
  * Filter to add the EWC control to specified widgets.
  *
- * @param	array	An empty array.
- * @return	array	An array containing the widget's ID base.
+ * @param  array An empty array.
+ * @return array An array containing the widget's ID base.
  */
 function myprefix_add_ewc_control( $ewc_widgets ) {
-	
+
     $ewc_widgets = array(
         'meta', // WP Meta widget
         'archives', // WP Archives widget
         'calendar', // WP Calendar widget
         'categories', // WP Categories widget
     );
-	
+
     return $ewc_widgets;
-	
+
 }`
 
 `add_filter( 'ewc_exclude_widgets', 'myprefix_remove_ewc_control' );
 /**
  * Filter to remove the EWC control from specified widgets.
  *
- * @param	array	An empty array.
- * @return	array	An array containing the widget's ID base.
+ * @param  array An empty array.
+ * @return array An array containing the widget's ID base.
  */
 function myprefix_remove_ewc_control( $ewc_widgets ) {
-	
+
     $ewc_widgets = array(
         'recent-comments', // WP Recent Comments widget
         'recent-posts', // WP Recent Posts widget
         'rss', // WP RSS widget
         'tag_cloud', // WP Tag Cloud widget
     );
-	
+
     return $ewc_widgets;
-	
+
 }`
 
-**ewc_color_palette**
+**2. ewc_color_palette**
 
 This filter allows you to add a custom color palette to the color picker control in the 'Widget Row' widget. It accepts an array of hex color values as parameters.
 
@@ -93,11 +93,11 @@ The example below demonstrates how you can implement this filter on your theme.
 /**
  * Filter to edit the color palette in the color picker control.
  *
- * @param	array	An empty array.
- * @return	array	An array containing hex color values.
+ * @param  array An empty array.
+ * @return array An array containing hex color values.
  */
 function myprefix_ewc_color_palette( $color_palette ) {
-	
+
     $color_palette = array(
         '#252724',
         '#ce6b36',
@@ -106,12 +106,12 @@ function myprefix_ewc_color_palette( $color_palette ) {
         '#3b3e3e',
         '#67b183',
     );
-	
+
     return $color_palette;
-	
+
 }`
 
-**ewc_preset_classes**
+**3. ewc_preset_classes**
 
 This filter allows you assign preset CSS classes that display as a checkbox list in the 'Widget Row' widget.
 
@@ -121,42 +121,42 @@ The following example demonstrates how you can implement this filter on your the
 /**
  * Filter for predefining EWC Widget Row classes.
  *
- * @param	array	An empty array.
- * @return	array	An array containing new values.
+ * @param  array An empty array.
+ * @return array An array containing new values.
  */
 function myprefix_preset_classes( $classes ) {
-	
+
     $classes = array(
         'hero',
         'parallax',
         'slider',
         'content',
     );
-	
+
     return $classes;
-	
+
 }`
 
-**ewc_advanced_options**
+**4. ewc_advanced_options**
 
 This filter allows you to remove specific or all advanced options from the 'Widget Row' widget. This can be useful for limiting design functionality on a client website ([decisions, not options](https://wordpress.org/about/philosophy/#decisions)).
 
 The following example demonstrates how to completely remove all advanced options.
 
-`// Remove all advanced options from the Widget Row widget
+`// Remove all advanced options from the Widget Row widget.
 add_filter( 'ewc_advanced_options', '__return_false' );`
 
-The example below demonstrates how to disable or enable specific advanced options. The `display` parameter toggles the advanced option and the `active` parameter determines if the panel will display open (1) or closed (0) when the Widget Row widget is first added into a widget area. 
+The example below demonstrates how to disable or enable specific advanced options. The `display` parameter toggles the advanced option and the `active` parameter determines if the panel will display open (1) or closed (0) when the Widget Row widget is first added into a widget area.
 
 `add_filter( 'ewc_advanced_options', 'myprefix_display_advanced_options' );
 /**
  * Filter to remove specific advanced options from the Widget Row widget.
  *
- * @param	array	An array containing default values.
- * @return	array	An array containing new values.
+ * @param  array An array containing default values.
+ * @return array An array containing new values.
  */
 function myprefix_display_advanced_options( $display ) {
-	
+
     $display = array(
         'ewc_background' => array(
             'display' => true,
@@ -175,9 +175,9 @@ function myprefix_display_advanced_options( $display ) {
             'active' => 0,
         ),
     );
-	
+
     return $display;
-	
+
 }`
 
 == Installation ==
@@ -236,6 +236,11 @@ To define new sub-rows within a widget row use the 'Sub-Row' widget at the start
 7. Custom homepage with delineated widget rows for reference
 
 == Changelog ==
+
+= 1.2.4 =
+
+* Code and syntax fixes to ensure compatibility with latest WordPress version.
+* Added Spanish translations.
 
 = 1.2.3 =
 * Fix PHP 7.2 compatibility issue.
