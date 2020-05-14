@@ -15,8 +15,8 @@
 
   if (existingVersion) {
   	delete jQuery.fn.select2;
-  }	
-	
+  }
+
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define(['jquery'], factory);
@@ -27,14 +27,14 @@
     // Browser globals
     factory(jQuery);
   }
-  
+
   jQuery.fn.ewcselect2 = jQuery.fn.select2;
-  
+
   if (existingVersion) {
   	delete jQuery.fn.select2;
   	jQuery.fn.select2 = existingVersion;
   }
-  
+
 }(function (jQuery) {
   // This is needed so we can catch the AMD loader configuration and use it
   // The inner file should be wrapped (by `banner.start.js`) in a function that
