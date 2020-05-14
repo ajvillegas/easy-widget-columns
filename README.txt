@@ -201,7 +201,7 @@ function myprefix_display_advanced_options( $display ) {
 
 This plugin only works with registered sidebars that have an HTML element assigned to the `before_widget` and `after_widget` parameters. If these parameters are empty, the plugin will not work. In addition, the `before_widget` parameter must have a class attribute associated with it so the plugin can inject the column classes accordingly.
 
-For more information, please refer to this page in the Codex: [Function Reference/register_sidebar](https://codex.wordpress.org/Function_Reference/register_sidebar).
+For more information, please refer to this page in the Codex: [Function Reference/register_sidebar](https://developer.wordpress.org/reference/functions/register_sidebar/).
 
 = Does the plugin add any HTML markup in the front-end? =
 
