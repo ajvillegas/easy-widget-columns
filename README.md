@@ -4,9 +4,10 @@ Easily display widgets in rows of columns.
 
 **Contributors**: [ajvillegas](http://profiles.wordpress.org/ajvillegas)  
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
-**Requires at least**: 4.5  
-**Tested up to**: 4.9  
-**Stable tag**: 1.2.3  
+**Requires at least**: 4.6  
+**Tested up to**: 5.4  
+**Requires PHP**: 5.6  
+**Stable tag**: 1.2.4  
 **License**: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
 ## Description
@@ -150,7 +151,7 @@ This filter allows you to remove specific or all advanced options from the 'Widg
 The following example demonstrates how to completely remove all advanced options.
 
 ```php
-// Remove all advanced options from the Widget Row widget
+// Remove all advanced options from the Widget Row widget.
 add_filter( 'ewc_advanced_options', '__return_false' );
 ```
 
@@ -261,6 +262,11 @@ To define new sub-rows within a widget row use the 'Sub-Row' widget at the start
 ![Custom homepage with delineated widget rows for reference](wp-assets/screenshot-7.png?raw=true)
 
 ## Changelog
+
+### 1.2.4
+
+* Code and syntax fixes to ensure compatibility with latest WordPress version.
+* Added Spanish translations.
 
 ### 1.2.3
 
