@@ -43,6 +43,7 @@ Both filters accept the widget's ID base as parameters. Please note that you can
 The examples below demonstrate how you can implement these filters on your theme.
 
 ```php
+<?php
 add_filter( 'ewc_include_widgets', 'myprefix_add_ewc_control' );
 /**
  * Filter to add the EWC control to specified widgets.
@@ -65,6 +66,7 @@ function myprefix_add_ewc_control( $ewc_widgets ) {
 ```
 
 ```php
+<?php
 add_filter( 'ewc_exclude_widgets', 'myprefix_remove_ewc_control' );
 /**
  * Filter to remove the EWC control from specified widgets.
@@ -93,6 +95,7 @@ This filter allows you to add a custom color palette to the color picker control
 The example below demonstrates how you can implement this filter on your theme.
 
 ```php
+<?php
 add_filter( 'ewc_color_palette', 'myprefix_ewc_color_palette' );
 /**
  * Filter to edit the color palette in the color picker control.
@@ -123,6 +126,7 @@ This filter allows you assign preset CSS classes that display as a checkbox list
 The following example demonstrates how you can implement this filter on your theme.
 
 ```php
+<?php
 add_filter( 'ewc_preset_classes', 'myprefix_preset_classes' );
 /**
  * Filter for predefining EWC Widget Row classes.
@@ -151,6 +155,7 @@ This filter allows you to remove specific or all advanced options from the 'Widg
 The following example demonstrates how to completely remove all advanced options.
 
 ```php
+<?php
 // Remove all advanced options from the Widget Row widget.
 add_filter( 'ewc_advanced_options', '__return_false' );
 ```
@@ -158,6 +163,7 @@ add_filter( 'ewc_advanced_options', '__return_false' );
 The example below demonstrates how to disable or enable specific advanced options. The `display` parameter toggles the advanced option and the `active` parameter determines if the panel will display open (1) or closed (0) when the Widget Row widget is first added into a widget area.
 
 ```php
+<?php
 add_filter( 'ewc_advanced_options', 'myprefix_display_advanced_options' );
 /**
  * Filter to remove specific advanced options from the Widget Row widget.
