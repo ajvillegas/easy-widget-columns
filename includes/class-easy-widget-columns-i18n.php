@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -8,7 +7,6 @@
  *
  * @link       http://www.alexisvillegas.com
  * @since      1.0.0
- *
  * @package    Easy_Widget_Columns
  * @subpackage Easy_Widget_Columns/includes
  */
@@ -24,12 +22,12 @@
  * @subpackage Easy_Widget_Columns/includes
  * @author     Alexis J. Villegas <alexis@ajvillegas.com>
  */
-class Easy_Widget_Columns_i18n {
+class Easy_Widget_Columns_I18n {
 
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
 	 */
 	public function load_plugin_textdomain() {
 
