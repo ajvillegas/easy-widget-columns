@@ -3,7 +3,7 @@ Contributors: ajvillegas
 Donate link:
 Tags: widget, admin, columns, layout, widget columns
 Requires at least: 4.6
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6
 Stable tag: 1.2.4
 License: GPLv2 or later

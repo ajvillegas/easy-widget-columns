@@ -5,7 +5,7 @@ Easily display widgets in rows of columns.
 **Contributors**: [ajvillegas](http://profiles.wordpress.org/ajvillegas)  
 **Tags**: [widget](http://wordpress.org/plugins/tags/widget), [admin](http://wordpress.org/plugins/tags/admin), [columns](http://wordpress.org/plugins/tags/columns), [layout](http://wordpress.org/plugins/tags/layout), [widget columns](http://wordpress.org/plugins/tags/widget-columns)  
 **Requires at least**: 4.6  
-**Tested up to**: 5.4  
+**Tested up to**: 5.5  
 **Requires PHP**: 5.6  
 **Stable tag**: 1.2.4  
 **License**: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
